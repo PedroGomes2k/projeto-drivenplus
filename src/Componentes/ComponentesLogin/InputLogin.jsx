@@ -18,11 +18,11 @@ export default function Login() {
             .then((res) => {
 
                 setToken(res.data)
-                if (token.membership === null) {
-
+                if (token.membership === undefined || null || "") {
+                    console.log(token.membership)
                     navigate("/subscriptions")
                 } else {
-
+                    
                     navigate("/home")
                 }
 
@@ -67,12 +67,12 @@ const Container = styled.div`
     
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    
-    margin-top: 150px;
+    align-items: center;
+    margin-top: 80px;
     
     input{
-
+        display: flex;
+        justify-content: center;
 
         width: 299px;
         height: 52px;
@@ -110,5 +110,11 @@ const Container = styled.div`
         margin-top: 25px;
 
         text-decoration: underline;
+
+        color: #FFFFFF;
     }
+
+    a:link{
+            text-decoration: none;
+        }
 `
