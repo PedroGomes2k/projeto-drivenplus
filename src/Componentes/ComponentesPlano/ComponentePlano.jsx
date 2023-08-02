@@ -6,27 +6,23 @@ import InputPlano from "./InputPlano"
 export default function ComponentesPlano() {
 
     const { plano } = useContext(TokenAut)
-    const { image, perks, price, name } = plano
-    let lista = perks.length
+    const { image,  price, name, id } = plano
 
-   
+
+
     return (
         <Container>
             <img src={image} alt="Imagem-logo" />
 
             <h1>{name}</h1>
 
-
             <Beneficios>
                 <ion-icon name="clipboard-outline" />
                 <h2>Beneficios :</h2>
 
+                <p>01. Brindes exclusivos</p>
+                <p>02. Materiais bônus de web</p>
 
-                {perks && perks.map((p) =>
-                    <ListaBeneficios key={p.id}>
-                        <p>{} . {p.title}</p>
-                    </ListaBeneficios>
-                )}
             </Beneficios>
 
             <Preco>
@@ -36,7 +32,12 @@ export default function ComponentesPlano() {
                 <p>{price} cobrados mensalmente</p>
             </Preco>
 
-            <InputPlano />
+
+            <InputPlano
+                id={id}
+                price={price}
+                name={name}
+            />
 
         </Container>
     )
