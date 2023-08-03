@@ -1,10 +1,10 @@
 import { styled } from "styled-components"
-
+import ComponenteHome from "../../Componentes/ComponentesHome/ComponenteHome"
 
 export default function Home(){
     return(
         <Container>
-
+            <ComponenteHome/>
         </Container>
     )
 }

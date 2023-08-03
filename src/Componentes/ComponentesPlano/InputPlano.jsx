@@ -9,87 +9,74 @@ import ButtonChose from "./ButtonChose"
 export default function InputPlano({ id, name, price }) {
 
     const navigate = useNavigate()
-    const { token, homeInf, setHomeInf } = useContext(TokenAut)
+
 
     const [disabled, setDisabled] = useState("waitchose")
-    const [form, setForm] = useState({ membershipId: "", cardName: "", cardNumber: "", securityNumber: "", expirationDate: "" })
+    const [form, setForm] = useState({ membershipId: id, cardName: "", cardNumber: "", securityNumber: "", expirationDate: "" })
+    
 
     function BuyShip(e) {
         e.preventDefault()
 
-        setForm({ ...form, membershipId: id })
+        setDisabled("finalizar")
 
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token.token}`
-            }
-        }
-
-        const URL = axios.post(`${Urls}/subscriptions`, form, config)
-            .then((res) => {
-                setHomeInf(res.data)
-                //setDisabled("finalizar")
-                console.log(res.data)
-            }).catch((erro) =>
-                alert("Dados incorretos tente novamente!")
-            )
     }
 
-    
+
     if (disabled === "waitchose") {
         return (
-            
-                <Container onSubmit={BuyShip}>
 
-                    <form>
+            <Container onSubmit={BuyShip}>
+
+                <form>
+                    <input
+                        type="text"
+                        placeholder="   Nome impresso no cartão"
+                        value={form.cardName}
+                        onChange={(e) => setForm({ ...form, cardName: e.target.value })}
+                        required
+                    />
+                    <input
+                        type="text"
+                        placeholder="   Digitos do cartão"
+                        value={form.cardNumber}
+                        onChange={(e) => setForm({ ...form, cardNumber: e.target.value })}
+                        required
+                    />
+
+                    <SegurançaCartao>
                         <input
                             type="text"
-                            placeholder="   Nome impresso no cartão"
-                            value={form.cardName}
-                            onChange={(e) => setForm({ ...form, cardName: e.target.value })}
+                            placeholder="   Código de segurança"
+                            value={form.securityNumber}
+                            onChange={(e) => setForm({ ...form, securityNumber: e.target.value })}
                             required
                         />
                         <input
                             type="text"
-                            placeholder="   Digitos do cartão"
-                            value={form.cardNumber}
-                            onChange={(e) => setForm({ ...form, cardNumber: e.target.value })}
+                            placeholder="   Validade"
+                            value={form.expirationDate}
+                            onChange={(e) => setForm({ ...form, expirationDate: e.target.value })}
                             required
                         />
+                    </SegurançaCartao>
 
-                        <SegurançaCartao>
-                            <input
-                                type="text"
-                                placeholder="   Código de segurança"
-                                value={form.securityNumber}
-                                onChange={(e) => setForm({ ...form, securityNumber: e.target.value })}
-                                required
-                            />
-                            <input
-                                type="text"
-                                placeholder="   Validade"
-                                value={form.expirationDate}
-                                onChange={(e) => setForm({ ...form, expirationDate: e.target.value })}
-                                required
-                            />
-                        </SegurançaCartao>
+                    <button type="submit" > ASSINAR</button>
+                </form>
 
-                        <button type="submit" > ASSINAR</button>
-                    </form>
-
-                </Container>
+            </Container>
         )
-    } /** else {
+    } else {
         return (
             <ButtonChose
-            fomr={form}
-            setForm={setForm}
-            name={name}
-            price={price}
+                setDisabled={setDisabled}
+                name={name}
+                price={price}
+                form={form}
             />
         )
     }
-*/
+
 }
 
 const Container = styled.div`

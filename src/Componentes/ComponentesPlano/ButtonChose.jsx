@@ -1,19 +1,46 @@
+import { useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import { styled } from "styled-components"
+import { TokenAut } from "../../Contex/Token"
+import { Urls } from "../../Constantes/Urls"
+import axios from "axios"
 
-export default function ButtonChose({ form, setForm, name, price }) {
+export default function ButtonChose({ name, price, setDisabled, form }) {
 
-    console.log(form)
+    const { token, setHomeInf, homeInf } = useContext(TokenAut)
+    const navigate = useNavigate()
+
+    console.log(token)
+    
+
     function clickNao() {
+        setDisabled("waitchose")
 
-        navigate()
     }
 
     function clickSim() {
-        console.log(2)
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token.token}`
+            }
+        }
+
+        const URL = axios.post(`${Urls}/subscriptions`, form, config)
+            .then((res) => {
+
+
+                setHomeInf(res.data)
+                navigate("/home")
+
+            }).catch((erro) =>
+                alert("Dados incorretos tente novamente!")
+            )
     }
 
     return (
         <>
+
             <Container >
 
                 <form>
@@ -42,7 +69,9 @@ export default function ButtonChose({ form, setForm, name, price }) {
                 </form>
 
             </Container>
+
             <ContainerPergunta>
+                <ion-icon name="close-outline" onClick={() => clickNao()}></ion-icon>
                 <CardPergunta>
                     <p>Tem certeza que que deseja assinar o plano</p>
                     <p>{name} ({price})</p>
@@ -116,7 +145,19 @@ const ContainerPergunta = styled.div`
     
     position: absolute;
 
-    
+    ion-icon{
+        display: flex;
+        width: 28px;
+        height: 28px;
+
+        position: absolute;
+        left: 327px;
+        top: 20px;
+
+        border-radius: 5px;
+        background-color: #FFFFFF;
+        color:  black;
+    }
 `
 
 const CardPergunta = styled.div`

@@ -11,18 +11,20 @@ export default function Login() {
     const navigate = useNavigate()
     const [form, setForm] = useState({ email: "", password: "" })
 
+
     function Login(e) {
         e.preventDefault()
 
         const URL = axios.post(`${Urls}/auth/login`, form)
             .then((res) => {
-
-                setToken(res.data)
-                if (token.membership === undefined || null || "") {
-                    console.log(token.membership)
+                console.log(res.data)
+              
+                if (res.data.membership === null || undefined) {
+                   
                     navigate("/subscriptions")
                 } else {
-                    
+
+                   
                     navigate("/home")
                 }
 
@@ -33,6 +35,7 @@ export default function Login() {
                 console.log(erro.error)
             })
     }
+
     return (
         <Container onSubmit={Login}>
             <form>

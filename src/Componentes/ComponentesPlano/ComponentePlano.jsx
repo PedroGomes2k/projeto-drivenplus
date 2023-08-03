@@ -62,14 +62,7 @@ const Container = styled.div`
         color: #FFFFFF;
     }
 
-    ion-icon{
-        width: 20px;
-        height: 20px;
-        
-        color: #FF4791;
-
-        margin-right: 10px;
-    }
+    
 
   
 `
@@ -109,6 +102,14 @@ const Beneficios = styled.div`
         color: #FFFFFF;
     }
     
+    ion-icon{
+        width: 20px;
+        height: 20px;
+        
+        color: #FF4791;
+
+        margin-right: 10px;
+    }
 
 `
 
@@ -147,6 +148,14 @@ const Preco = styled.div`
 
         
         color: #FFFFFF;
+    }
+    ion-icon{
+        width: 20px;
+        height: 20px;
+        
+        color: #FF4791;
+
+        margin-right: 10px;
     }
 `
 const ListaBeneficios = styled.div`
