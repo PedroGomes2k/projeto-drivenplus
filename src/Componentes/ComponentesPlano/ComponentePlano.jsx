@@ -9,7 +9,7 @@ export default function ComponentesPlano() {
     const { image,  price, name, id } = plano
 
 
-
+    
     return (
         <Container>
             <img src={image} alt="Imagem-logo" />

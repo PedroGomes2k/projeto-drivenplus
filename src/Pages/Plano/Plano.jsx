@@ -1,13 +1,33 @@
 import { styled } from "styled-components"
 import ComponentesPlano from "../../Componentes/ComponentesPlano/ComponentePlano"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { Urls } from "../../Constantes/Urls"
+import axios from "axios"
+import { useContext, useEffect } from "react"
+import { TokenAut } from "../../Contex/Token"
 
 
 export default function Plano() {
+    const { idPlano } = useParams()
+    const { token, setPlano } = useContext(TokenAut)
 
-    const navigate = useNavigate()
+    useEffect(() => {
 
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token.token}`
+            }
+        }
+        const URL = axios.get(`${Urls}/subscriptions/memberships/${idPlano}`, config)
+            .then((res) => {
 
+            setPlano(res.data)
+
+            }).catch((erro) =>
+                console.log(erro.error)
+            )
+
+    }, [idPlano])
 
     return (
         <Container>

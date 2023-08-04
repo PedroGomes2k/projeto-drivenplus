@@ -17,7 +17,7 @@ export default function Login() {
 
         const URL = axios.post(`${Urls}/auth/login`, form)
             .then((res) => {
-                console.log(res.data)
+               
                 setToken(res.data)
                 if (res.data.membership === null || undefined) {
                    

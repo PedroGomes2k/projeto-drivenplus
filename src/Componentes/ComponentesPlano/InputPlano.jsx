@@ -14,6 +14,8 @@ export default function InputPlano({ id, name, price }) {
     const [disabled, setDisabled] = useState("waitchose")
     const [form, setForm] = useState({ membershipId: id, cardName: "", cardNumber: "", securityNumber: "", expirationDate: "" })
     
+    const formStorage = JSON.stringify(form)
+    localStorage.setItem("formHome", formStorage)
 
     function BuyShip(e) {
         e.preventDefault()

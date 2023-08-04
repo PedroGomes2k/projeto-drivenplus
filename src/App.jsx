@@ -16,7 +16,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/sign-up" element={<Cadastro />} />
-        <Route path="/subscriptions/ID_DO_PLANO" element={<Plano />} />
+        <Route path="/subscriptions/:idPlano" element={<Plano />} />
         <Route path="/subscriptions" element={<Planos />} />
         <Route path="/home" element={<Home />} />
       </Routes>

@@ -1,40 +1,21 @@
 import { useContext, useEffect } from "react"
 import { styled } from "styled-components"
-import { TokenAut } from "../../Contex/Token"
-import axios from "axios"
-import { Urls } from "../../Constantes/Urls"
 import { useNavigate } from "react-router-dom"
 
 
 export default function ContainersPlanos({ id, price, image }) {
 
     const navigate = useNavigate()
-    const { setIdPlano, idPlano, token , setPlano } = useContext(TokenAut)
+    
 
-    function ClickPlano(i) {
+    function ClickPlano(id) {
 
-        setIdPlano(i)
+
+        navigate(`/subscriptions/${id}`)
     }
 
-    
-    useEffect(() => {
 
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token.token}`
-            }
-        }
-        const URL = axios.get(`${Urls}/subscriptions/memberships/${idPlano}`, config)
-            .then((res) =>{
 
-                setPlano(res.data)
-                navigate("/subscriptions/ID_DO_PLANO")
-                
-            }).catch((erro) =>
-                console.log(erro.error)
-            )
-
-    }, [idPlano])
 
 
     return (
