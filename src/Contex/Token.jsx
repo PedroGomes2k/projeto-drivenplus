@@ -4,12 +4,12 @@ export const TokenAut = createContext()
 export function TokenProvider({ children }) {
 
     const [token, setToken] = useState([])
-    const [plano, setPlano] = useState([])
+    
     const [homeInf, setHomeInf] = useState([])
 
     return (
 
-        <TokenAut.Provider value={{ token, setToken, plano, setPlano, homeInf, setHomeInf }}>
+        <TokenAut.Provider value={{ token, setToken, homeInf, setHomeInf }}>
             {children}
         </TokenAut.Provider>
 

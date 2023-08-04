@@ -7,12 +7,11 @@ import axios from "axios"
 
 export default function ButtonChose({ name, price, setDisabled, form }) {
 
-    const { token, setHomeInf, homeInf, setToken } = useContext(TokenAut)
+    const { token } = useContext(TokenAut)
     const navigate = useNavigate()
 
 
    
-
     function clickNao() {
         setDisabled("waitchose")
 
@@ -20,7 +19,7 @@ export default function ButtonChose({ name, price, setDisabled, form }) {
 
     function clickSim() {
 
-        
+
 
         const config = {
             headers: {
@@ -30,8 +29,8 @@ export default function ButtonChose({ name, price, setDisabled, form }) {
 
         const URL = axios.post(`${Urls}/subscriptions`, form, config)
             .then((res) => {
-                
-            
+
+
                 navigate("/home")
 
             }).catch((erro) =>

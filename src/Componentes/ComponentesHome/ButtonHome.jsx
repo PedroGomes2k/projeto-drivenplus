@@ -10,7 +10,6 @@ export default function ButtonHome({ token }) {
     const newStorage = localStorage.getItem("formHome")
     const formHome = JSON.parse(newStorage)
 
-    console.log(formHome)
 
     function changePlan() {
 

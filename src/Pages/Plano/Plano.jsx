@@ -3,14 +3,19 @@ import ComponentesPlano from "../../Componentes/ComponentesPlano/ComponentePlano
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { Urls } from "../../Constantes/Urls"
 import axios from "axios"
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { TokenAut } from "../../Contex/Token"
 
 
 export default function Plano() {
-    const { idPlano } = useParams()
-    const { token, setPlano } = useContext(TokenAut)
 
+    const { token } = useContext(TokenAut)
+    const { idPlano } = useParams()
+   
+    const [plano, setPlano] = useState([])
+
+    
+    
     useEffect(() => {
 
         const config = {
@@ -21,7 +26,7 @@ export default function Plano() {
         const URL = axios.get(`${Urls}/subscriptions/memberships/${idPlano}`, config)
             .then((res) => {
 
-            setPlano(res.data)
+                setPlano(res.data)
 
             }).catch((erro) =>
                 console.log(erro.error)
@@ -38,7 +43,10 @@ export default function Plano() {
                 </Icon>
             </Link>
 
-            <ComponentesPlano />
+            <ComponentesPlano
+                plano={plano}
+               
+            />
 
 
         </Container>

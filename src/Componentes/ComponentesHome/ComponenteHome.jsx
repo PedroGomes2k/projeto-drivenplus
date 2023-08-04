@@ -1,24 +1,25 @@
 
 import { styled } from "styled-components"
 import { TokenAut } from "../../Contex/Token"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import ButtonHome from "./ButtonHome"
 
 export default function ComponenteHome() {
 
     const { token , setToken} = useContext(TokenAut)
     const { membership, name } = token
+    
 
     return (
         <Container>
             <Topo>
-                <img src={membership.image} alt="logo-do-plano" />
+                <img src={membership && membership.image} alt="logo-do-plano" />
                 <ion-icon name="person-circle"></ion-icon>
             </Topo>
             <p>Olá, {name}</p>
 
             <Button>
-                {membership.perks.map((m) =>
+                {membership && membership.perks.map((m) =>
 
                     <button key={m.id}> {m.title} </button>
                 )}

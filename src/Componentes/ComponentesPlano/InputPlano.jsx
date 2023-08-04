@@ -1,25 +1,19 @@
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { styled } from "styled-components"
-import { TokenAut } from "../../Contex/Token"
-import axios from "axios"
-import { Urls } from "../../Constantes/Urls"
-import { useNavigate } from "react-router-dom"
 import ButtonChose from "./ButtonChose"
 
 export default function InputPlano({ id, name, price }) {
 
-    const navigate = useNavigate()
-
-
     const [disabled, setDisabled] = useState("waitchose")
-    const [form, setForm] = useState({ membershipId: id, cardName: "", cardNumber: "", securityNumber: "", expirationDate: "" })
-    
+    const [form, setForm] = useState({ membershipId: "", cardName: "", cardNumber: "", securityNumber: "", expirationDate: "" })
+
+
     const formStorage = JSON.stringify(form)
     localStorage.setItem("formHome", formStorage)
 
     function BuyShip(e) {
         e.preventDefault()
-
+        setForm({ ...form, membershipId: id })
         setDisabled("finalizar")
 
     }

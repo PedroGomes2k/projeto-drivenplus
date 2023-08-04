@@ -3,11 +3,12 @@ import { useContext, useState } from "react"
 import { TokenAut } from "../../Contex/Token"
 import InputPlano from "./InputPlano"
 
-export default function ComponentesPlano() {
+export default function ComponentesPlano({plano}) {
 
-    const { plano } = useContext(TokenAut)
+    
     const { image,  price, name, id } = plano
 
+    
 
     
     return (
